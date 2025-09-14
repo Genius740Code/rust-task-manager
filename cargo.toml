@@ -1,0 +1,28 @@
+[package]
+name = "systop"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your.email@example.com>"]
+description = "A fast, lightweight system monitor and task manager for the terminal"
+license = "MIT"
+repository = "https://github.com/yourusername/systop"
+keywords = ["system", "monitor", "tui", "htop", "processes"]
+categories = ["command-line-utilities"]
+
+[[bin]]
+name = "systop"
+path = "src/main.rs"
+
+[dependencies]
+ratatui = "0.24"
+crossterm = "0.27"
+tokio = { version = "1.0", features = ["full"] }
+sysinfo = "0.29"
+anyhow = "1.0"
+clap = { version = "4.0", features = ["derive"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"

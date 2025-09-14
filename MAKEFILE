@@ -1,0 +1,50 @@
+.PHONY: build run test clean install help dev
+
+# Default target
+help:
+	@echo "SysTop - Rust System Monitor"
+	@echo ""
+	@echo "Available targets:"
+	@echo "  build     - Build the project in release mode"
+	@echo "  run       - Run the application"
+	@echo "  test      - Run all tests"
+	@echo "  dev       - Run in development mode with debug output"
+	@echo "  clean     - Clean build artifacts"
+	@echo "  install   - Install binary to cargo bin path"
+	@echo "  check     - Check code without building"
+	@echo "  fmt       - Format code"
+	@echo "  clippy    - Run clippy lints"
+
+build:
+	cargo build --release
+
+run:
+	cargo run --release
+
+dev:
+	cargo run -- --debug --interval 250
+
+test:
+	cargo test
+
+clean:
+	cargo clean
+
+install:
+	cargo install --path .
+
+check:
+	cargo check
+
+fmt:
+	cargo fmt
+
+clippy:
+	cargo clippy -- -D warnings
+
+# Development helpers
+watch:
+	cargo watch -x run
+
+doc:
+	cargo doc --open
